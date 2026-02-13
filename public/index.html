@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Derbyshire Dales Bin Collections</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --derbyshire-green: #2d5f3f;
+        --derbyshire-light-green: #5a9367;
+        --derbyshire-hills: #88b896;
+        --refuse-grey: #5a5a5a;
+        --recycling-blue: #0066cc;
+        --garden-green: #4caf50;
+        --food-brown: #8d6e63;
+        --bg-cream: #faf8f3;
+        --shadow: 0 2px 8px rgba(0,0,0,0.1);
+        --shadow-lg: 0 4px 20px rgba(0,0,0,0.15);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, var(--bg-cream) 0%, #e8f5e9 100%);
+        min-height: 100vh;
+        padding: 20px;
+        color: #333;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .header {
+        background: white;
+        border-radius: 16px;
+        padding: 32px;
+        margin-bottom: 24px;
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, var(--derbyshire-green) 0%, var(--derbyshire-light-green) 100%);
+        opacity: 0.1;
+        border-radius: 0 16px 0 100%;
+      }
+
+      .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 12px;
+        position: relative;
+      }
+
+      .logo {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--derbyshire-green) 0%, var(--derbyshire-light-green) 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        box-shadow: var(--shadow);
+      }
+
+      .logo svg {
+        width: 36px;
+        height: 36px;
+        fill: white;
+      }
+
+      h1 {
+        font-size: 28px;
+        color: var(--derbyshire-green);
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .subtitle {
+        color: #666;
+        font-size: 14px;
+        margin-top: 4px;
+        position: relative;
+      }
+
+      .search-card {
+        background: white;
+        border-radius: 16px;
+        padding: 28px;
+        margin-bottom: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .search-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .search-box {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      input {
+        flex: 1;
+        min-width: 200px;
+        padding: 14px 18px;
+        font-size: 16px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-family: 'Inter', sans-serif;
+        transition: all 0.3s ease;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: var(--derbyshire-light-green);
+        box-shadow: 0 0 0 3px rgba(90, 147, 103, 0.1);
+      }
+
+      button {
+        padding: 14px 32px;
+        font-size: 16px;
+        font-weight: 600;
+        background: linear-gradient(135deg, var(--derbyshire-green) 0%, var(--derbyshire-light-green) 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-family: 'Inter', sans-serif;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow);
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      #result {
+        min-height: 100px;
+      }
+
+      .result-card {
+        background: white;
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow: var(--shadow);
+        animation: slideIn 0.4s ease;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .address-section {
+        padding: 16px;
+        background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e9 100%);
+        border-radius: 12px;
+        margin-bottom: 24px;
+      }
+
+      .address-label {
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #666;
+        letter-spacing: 0.5px;
+      }
+
+      .address-value {
+        font-size: 18px;
+        color: var(--derbyshire-green);
+        font-weight: 600;
+        margin-top: 4px;
+      }
+
+      .postcode-value {
+        font-size: 14px;
+        color: #666;
+        margin-top: 2px;
+      }
+
+      .collections-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--derbyshire-green);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .collections-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .collection-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px;
+        background: #fafafa;
+        border-radius: 12px;
+        border-left: 4px solid #ddd;
+        transition: all 0.2s ease;
+      }
+
+      .collection-item:hover {
+        background: #f5f5f5;
+        transform: translateX(4px);
+      }
+
+      .collection-item.refuse { border-left-color: var(--refuse-grey); }
+      .collection-item.recycling { border-left-color: var(--recycling-blue); }
+      .collection-item.garden { border-left-color: var(--garden-green); }
+      .collection-item.food { border-left-color: var(--food-brown); }
+
+      .bin-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: white;
+        font-weight: bold;
+        font-size: 24px;
+      }
+
+      .bin-icon.refuse { background: var(--refuse-grey); }
+      .bin-icon.recycling { background: var(--recycling-blue); }
+      .bin-icon.garden { background: var(--garden-green); }
+      .bin-icon.food { background: var(--food-brown); }
+
+      .collection-details {
+        flex: 1;
+      }
+
+      .collection-type {
+        font-weight: 600;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .collection-date {
+        font-size: 14px;
+        color: #666;
+        margin-top: 2px;
+      }
+
+      .note {
+        margin-top: 20px;
+        padding: 12px 16px;
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        border-radius: 8px;
+        font-size: 13px;
+        color: #856404;
+      }
+
+      .note.live {
+        background: #d4edda;
+        border-left-color: #28a745;
+        color: #155724;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+        font-size: 16px;
+      }
+
+      .spinner {
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid var(--derbyshire-green);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 12px;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 32px;
+        padding: 20px;
+        color: #666;
+        font-size: 13px;
+      }
+
+      .footer a {
+        color: var(--derbyshire-green);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* Tablet and below */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0;
+        }
+
+        .header {
+          border-radius: 0;
+        }
+
+        .search-card {
+          border-radius: 0;
+        }
+
+        .result-card {
+          border-radius: 0;
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 600px) {
+        body {
+          padding: 0;
+        }
+
+        .header {
+          padding: 20px;
+        }
+
+        .logo {
+          width: 50px;
+          height: 50px;
+        }
+
+        .logo svg {
+          width: 30px;
+          height: 30px;
+        }
+
+        h1 {
+          font-size: 20px;
+        }
+
+        .subtitle {
+          font-size: 12px;
+        }
+
+        .search-card {
+          padding: 20px;
+        }
+
+        .search-box {
+          flex-direction: column;
+        }
+
+        input {
+          width: 100%;
+        }
+
+        button {
+          width: 100%;
+        }
+
+        .result-card {
+          padding: 20px;
+        }
+
+        .collection-item {
+          flex-direction: column;
+          text-align: center;
+          gap: 12px;
+        }
+
+        .bin-icon {
+          width: 60px;
+          height: 60px;
+          font-size: 32px;
+        }
+
+        .collections-title {
+          font-size: 18px;
+        }
+      }
+
+      /* Small mobile */
+      @media (max-width: 375px) {
+        h1 {
+          font-size: 18px;
+        }
+
+        .address-value {
+          font-size: 16px;
+        }
+
+        .collection-type {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo-area">
+          <div class="logo">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" fill="none"/>
+              <path d="M19 15l-7 7-7-7" stroke="currentColor" stroke-width="2" fill="none"/>
+              <rect x="10" y="2" width="4" height="6" rx="1"/>
+            </svg>
+          </div>
+          <div>
+            <h1>Derbyshire Dales Bin Collections</h1>
+            <div class="subtitle">Live collection dates from your local council</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-card">
+        <label class="search-label">Enter your postcode</label>
+        <div class="search-box">
+          <input
+            id="postcode"
+            type="text"
+            placeholder="e.g. DE6 1JP"
+            value="DE6 1JP"
+            aria-label="Postcode"
+          />
+          <button id="fetch">Find Collections</button>
+        </div>
+      </div>
+
+      <div id="result"></div>
+
+      <div class="footer">
+        Data provided by <a href="https://www.derbyshiredales.gov.uk" target="_blank">Derbyshire Dales District Council</a>
+        <br>
+        Live collection dates • Updated daily
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
