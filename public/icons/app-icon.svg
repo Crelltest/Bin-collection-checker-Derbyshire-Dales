@@ -1,0 +1,21 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="80" fill="#2d5f3f"/>
+
+  <!-- Bin icon (centered, white) -->
+  <g transform="translate(256, 256)">
+    <!-- Bin lid -->
+    <rect x="-120" y="-180" width="240" height="40" rx="8" fill="white"/>
+
+    <!-- Bin handle -->
+    <rect x="-30" y="-200" width="60" height="30" rx="6" fill="white"/>
+
+    <!-- Bin body -->
+    <path d="M -100 -130 L -80 100 L 80 100 L 100 -130 Z" fill="white"/>
+
+    <!-- Bin lines (recycling symbol suggestion) -->
+    <path d="M -60 -80 L -50 0" stroke="#2d5f3f" stroke-width="8" stroke-linecap="round"/>
+    <path d="M 0 -80 L 0 0" stroke="#2d5f3f" stroke-width="8" stroke-linecap="round"/>
+    <path d="M 60 -80 L 50 0" stroke="#2d5f3f" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>
